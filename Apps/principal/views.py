@@ -1,5 +1,5 @@
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from .models import Categoria
 from .forms import CategoriaForm
 from django.shortcuts import render
@@ -26,3 +26,9 @@ class CategoriaDelete(DeleteView):
     model = Categoria
     template_name = "principal/confirm_delete.html"
     success_url = reverse_lazy("principal:categoria_list")
+
+
+class CategoriaDetail(DetailView):
+    model = Categoria
+    template_name = "principal/categoria_detail.html"
+

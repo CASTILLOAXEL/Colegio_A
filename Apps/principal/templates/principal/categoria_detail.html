@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Detalle Categoría{% endblock %}
+{% block content %}
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            <h4>Detalle de Categoría</h4>
+        </div>
+        <div class="card-body">
+            <p><strong>Nombre:</strong> {{ object.nombre }}</p>
+            <p><strong>Descripción:</strong> {{ object.descripcion }}</p>
+        </div>
+        <div class="card-footer">
+            <a href="{% url 'principal:categoria_list' %}" class="btn btn-secondary">Volver</a>
+        </div>
+    </div>
+{% endblock %}
