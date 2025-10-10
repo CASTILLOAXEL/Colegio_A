@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Autorizadores{% endblock %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h2>Lista de Autorizadores</h2>
+        <a href="{% url 'publicaciones:autorizador_create' %}" class="btn btn-success mb-3">Nuevo Autorizador</a>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for a in object_list %}
+                <tr>
+                    <td>{{ a.nombre }}</td>
+                    <td>{{ a.email }}</td>
+                    <td>
+                        <a href="{% url 'publicaciones:autorizador_update' a.id %}" class="btn btn-warning btn-sm">Editar</a>
+                        <a href="{% url 'publicaciones:autorizador_delete' a.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr><td colspan="3">No hay autorizadores</td></tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h3>{{ object.titulo }}</h3>
+            <p class="text-muted">Autor: {{ object.autor }} | Autorizado por: {{ object.autorizado_por }}</p>
+            <p>{{ object.contenido }}</p>
+        </div>
+    </div>
+
+    <h4 class="mt-4">Comentarios</h4>
+    <ul class="list-group mb-3">
+        {% for c in object.comentarios.all %}
+            <li class="list-group-item">
+                <strong>{{ c.estudiante }}</strong>: {{ c.texto }}
+                <span class="text-muted small float-end">{{ c.fecha|date:"d/m/Y H:i" }}</span>
+            </li>
+        {% empty %}
+            <li class="list-group-item text-center">No hay comentarios</li>
+        {% endfor %}
+    </ul>
+
+    <form method="post" class="card card-body">{% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-primary">Comentar</button>
+    </form>
+{% endblock %}

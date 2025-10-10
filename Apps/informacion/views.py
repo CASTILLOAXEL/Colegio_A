@@ -1,9 +1,25 @@
-from django.shortcuts import render
+from django.urls import reverse_lazy
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from .models import Noticia
+from .forms import NoticiaForm
 
-# Create your views here.
-from django.shortcuts import render
-from django.views.generic import TemplateView
-# Create your views here.af
+class NoticiaList(ListView):
+    model = Noticia
+    template_name = "informacion/noticia_list.html"
 
-class HomeView(TemplateView):
-    template_name = 'home.html'
+class NoticiaCreate(CreateView):
+    model = Noticia
+    form_class = NoticiaForm
+    template_name = "informacion/form.html"
+    success_url = reverse_lazy("informacion:noticia_list")
+
+class NoticiaUpdate(UpdateView):
+    model = Noticia
+    form_class = NoticiaForm
+    template_name = "informacion/form.html"
+    success_url = reverse_lazy("informacion:noticia_list")
+
+class NoticiaDelete(DeleteView):
+    model = Noticia
+    template_name = "informacion/confirm_delete.html"
+    success_url = reverse_lazy("informacion:noticia_list")

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Publicadores{% endblock %}
+{% block content %}
+    <div class="d-flex justify-content-between mb-3">
+        <h2>Publicadores</h2>
+        <a href="{% url 'publicaciones:publicador_create' %}" class="btn btn-success"><i class="bi bi-plus-circle"></i> Nuevo</a>
+    </div>
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+        <tr><th>Nombre</th><th>Correo</th><th>Carnet</th><th>Acciones</th></tr>
+        </thead>
+        <tbody>
+        {% for pub in object_list %}
+            <tr>
+                <td>{{ pub.nombre }}</td>
+                <td>{{ pub.correo }}</td>
+                <td>{{ pub.carnet }}</td>
+                <td>
+                    <a href="{% url 'publicaciones:publicador_update' pub.id %}" class="btn btn-warning btn-sm"><i class="bi bi-pencil"></i></a>
+                    <a href="{% url 'publicaciones:publicador_delete' pub.id %}" class="btn btn-danger btn-sm btn-delete"><i class="bi bi-trash"></i></a>
+                </td>
+            </tr>
+        {% empty %}
+            <tr><td colspan="4" class="text-center">No hay registros</td></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

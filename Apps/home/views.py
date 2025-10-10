@@ -1,6 +1,14 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView
-# Create your views here.af
+from Apps.publicaciones.models import EstudiantePublicador, EstudianteAutorizador, Articulo, Comentario
+from Apps.principal.models import Categoria
 
-class HomeView(TemplateView):
-    template_name = 'home.html'
+def index(request):
+    context = {
+        "total_publicadores": EstudiantePublicador.objects.count(),
+        "total_autorizadores": EstudianteAutorizador.objects.count(),
+        "total_articulos": Articulo.objects.count(),
+        "total_categorias": Categoria.objects.count(),
+        "total_comentarios": Comentario.objects.count(),
+        "ultimos_articulos": Articulo.objects.order_by("-fecha")[:5]
+    }
+    return render(request, "home/index.html", context)

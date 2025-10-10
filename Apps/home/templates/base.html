@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Revista Universitaria{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="{% url 'home:index' %}">Revista</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menu">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="{% url 'home:index' %}"><i class="bi bi-house"></i> Principal</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'informacion:index' %}"><i class="bi bi-info-circle"></i> Información</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'publicaciones:articulo_list' %}"><i class="bi bi-journal-text"></i> Publicaciones</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container py-4">
+    {% block content %}{% endblock %}
+</div>
+
+<footer class="bg-dark text-light text-center py-3 mt-4">
+    <p class="mb-0">© 2025 Revista Universitaria - Proyecto Django</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Confirmación de eliminación
+    document.addEventListener('click', (e)=>{
+        if(e.target.matches('.btn-delete')){
+            if(!confirm('¿Seguro que deseas eliminar este registro?')) e.preventDefault();
+        }
+    });
+</script>
+</body>
+</html>

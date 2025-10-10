@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Principal{% endblock %}
+{% block content %}
+    <div class="container mt-4">
+        <h2 class="fw-bold">Panel de Categorías</h2>
+        <p>Bienvenido a la sección principal. Aquí puedes gestionar las categorías de la revista.</p>
+        <a href="{% url 'principal:categoria_list' %}" class="btn btn-primary">Ver Categorías</a>
+    </div>
+{% endblock %}
