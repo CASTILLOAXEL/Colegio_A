@@ -1,0 +1,264 @@
+{#{% extends "base.html" %}#}
+{#{% block title %}Registro de Usuario{% endblock %}#}
+{##}
+{#{% block content %}#}
+{#    <div class="row justify-content-center mt-5">#}
+{#        <div class="col-md-8">#}
+{#            <div class="card shadow-lg border-0 rounded-4">#}
+{#                <div class="card-header bg-success bg-gradient text-white text-center rounded-top-4">#}
+{#                    <h4 class="mb-0"><i class="bi bi-person-plus"></i> Crear una cuenta</h4>#}
+{#                    <small class="text-light">Completa tus datos para registrarte</small>#}
+{#                </div>#}
+{#                <div class="card-body p-4">#}
+{##}
+{#                    <!-- Muestra errores generales -->#}
+{#                    {% if form.errors %}#}
+{#                        <div class="alert alert-danger">#}
+{#                            <ul class="mb-0">#}
+{#                                {% for field, errors in form.errors.items %}#}
+{#                                    {% for error in errors %}#}
+{#                                        <li><strong>{{ field|title }}:</strong> {{ error }}</li>#}
+{#                                    {% endfor %}#}
+{#                                {% endfor %}#}
+{#                            </ul>#}
+{#                        </div>#}
+{#                    {% endif %}#}
+{##}
+{#                    <form method="post" id="registroForm" novalidate>#}
+{#                        {% csrf_token %}#}
+{#                        <div class="row g-3">#}
+{#                            <div class="col-md-6">#}
+{#                                <div class="form-floating">#}
+{#                                    {{ form.first_name }}#}
+{#                                    <label for="id_first_name">Nombre</label>#}
+{#                                    {% if form.first_name.errors %}#}
+{#                                        <div class="text-danger small">{{ form.first_name.errors.0 }}</div>#}
+{#                                    {% endif %}#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="col-md-6">#}
+{#                                <div class="form-floating">#}
+{#                                    {{ form.last_name }}#}
+{#                                    <label for="id_last_name">Apellido</label>#}
+{#                                    {% if form.last_name.errors %}#}
+{#                                        <div class="text-danger small">{{ form.last_name.errors.0 }}</div>#}
+{#                                    {% endif %}#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="col-md-6">#}
+{#                                <div class="form-floating">#}
+{#                                    {{ form.username }}#}
+{#                                    <label for="id_username">Usuario</label>#}
+{#                                    {% if form.username.errors %}#}
+{#                                        <div class="text-danger small">{{ form.username.errors.0 }}</div>#}
+{#                                    {% endif %}#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="col-md-6">#}
+{#                                <div class="form-floating">#}
+{#                                    {{ form.email }}#}
+{#                                    <label for="id_email">Correo electrónico</label>#}
+{#                                    {% if form.email.errors %}#}
+{#                                        <div class="text-danger small">{{ form.email.errors.0 }}</div>#}
+{#                                    {% endif %}#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="col-md-6">#}
+{#                                <div class="form-floating">#}
+{#                                    {{ form.telefono }}#}
+{#                                    <label for="id_telefono">Teléfono</label>#}
+{#                                    {% if form.telefono.errors %}#}
+{#                                        <div class="text-danger small">{{ form.telefono.errors.0 }}</div>#}
+{#                                    {% endif %}#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="col-md-6">#}
+{#                                <div class="form-floating">#}
+{#                                    {{ form.carrera }}#}
+{#                                    <label for="id_carrera">Carrera</label>#}
+{#                                    {% if form.carrera.errors %}#}
+{#                                        <div class="text-danger small">{{ form.carrera.errors.0 }}</div>#}
+{#                                    {% endif %}#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="col-md-6">#}
+{#                                <div class="form-floating">#}
+{#                                    {{ form.password1 }}#}
+{#                                    <label for="id_password1">Contraseña</label>#}
+{#                                    {% if form.password1.errors %}#}
+{#                                        <div class="text-danger small">{{ form.password1.errors.0 }}</div>#}
+{#                                    {% endif %}#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="col-md-6">#}
+{#                                <div class="form-floating">#}
+{#                                    {{ form.password2 }}#}
+{#                                    <label for="id_password2">Confirmar contraseña</label>#}
+{#                                    {% if form.password2.errors %}#}
+{#                                        <div class="text-danger small">{{ form.password2.errors.0 }}</div>#}
+{#                                    {% endif %}#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <button type="submit" class="btn btn-success w-100 mt-4 shadow-sm">#}
+{#                            <i class="bi bi-check-circle"></i> Registrarme#}
+{#                        </button>#}
+{#                    </form>#}
+{#                    <hr>#}
+{#                    <p class="text-center mb-0">¿Ya tienes cuenta?#}
+{#                        <a href="{% url 'usuarios:login' %}" class="text-decoration-none fw-bold">Inicia sesión aquí</a>#}
+{#                    </p>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{##}
+{#    <script>#}
+{#        // Validación de contraseñas en el navegador#}
+{#        document.getElementById('registroForm').addEventListener('submit', function(e){#}
+{#            let pass1 = document.getElementById('id_password1').value;#}
+{#            let pass2 = document.getElementById('id_password2').value;#}
+{#            if(pass1 !== pass2){#}
+{#                e.preventDefault();#}
+{#                alert("Las contraseñas no coinciden.");#}
+{#            }#}
+{#        });#}
+{#    </script>#}
+{#{% endblock %}#}
+{% extends "base.html" %}
+{% block title %}Registro de Usuario{% endblock %}
+
+{% block content %}
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-8">
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-header bg-success bg-gradient text-white text-center rounded-top-4">
+                    <h4 class="mb-0"><i class="bi bi-person-plus"></i> Crear una cuenta</h4>
+                    <small class="text-light">Completa tus datos para registrarte</small>
+                </div>
+                <div class="card-body p-4">
+
+                    <!-- Muestra mensajes Django (éxito o error) -->
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+                    <!-- Muestra errores generales -->
+                    {% if form.errors %}
+                        <div class="alert alert-danger">
+                            <ul class="mb-0">
+                                {% for field, errors in form.errors.items %}
+                                    {% for error in errors %}
+                                        <li><strong>{{ field|title }}:</strong> {{ error }}</li>
+                                    {% endfor %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
+
+                    <form method="post" id="registroForm" novalidate>
+                        {% csrf_token %}
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    {{ form.first_name }}
+                                    <label for="id_first_name">Nombre</label>
+                                    {% if form.first_name.errors %}
+                                        <small class="text-danger">{{ form.first_name.errors.0 }}</small>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    {{ form.last_name }}
+                                    <label for="id_last_name">Apellido</label>
+                                    {% if form.last_name.errors %}
+                                        <small class="text-danger">{{ form.last_name.errors.0 }}</small>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    {{ form.username }}
+                                    <label for="id_username">Usuario</label>
+                                    {% if form.username.errors %}
+                                        <small class="text-danger">{{ form.username.errors.0 }}</small>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    {{ form.email }}
+                                    <label for="id_email">Correo electrónico</label>
+                                    {% if form.email.errors %}
+                                        <small class="text-danger">{{ form.email.errors.0 }}</small>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    {{ form.telefono }}
+                                    <label for="id_telefono">Teléfono</label>
+                                    {% if form.telefono.errors %}
+                                        <small class="text-danger">{{ form.telefono.errors.0 }}</small>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    {{ form.carrera }}
+                                    <label for="id_carrera">Carrera</label>
+                                    {% if form.carrera.errors %}
+                                        <small class="text-danger">{{ form.carrera.errors.0 }}</small>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    {{ form.password1 }}
+                                    <label for="id_password1">Contraseña</label>
+                                    {% if form.password1.errors %}
+                                        <small class="text-danger">{{ form.password1.errors.0 }}</small>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    {{ form.password2 }}
+                                    <label for="id_password2">Confirmar contraseña</label>
+                                    {% if form.password2.errors %}
+                                        <small class="text-danger">{{ form.password2.errors.0 }}</small>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-success w-100 mt-4 shadow-sm">
+                            <i class="bi bi-check-circle"></i> Registrarme
+                        </button>
+                    </form>
+                    <hr>
+                    <p class="text-center mb-0">¿Ya tienes cuenta?
+                        <a href="{% url 'usuarios:login' %}" class="text-decoration-none fw-bold">Inicia sesión aquí</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Validación de contraseñas en el navegador
+        document.getElementById('registroForm').addEventListener('submit', function(e){
+            let pass1 = document.getElementById('id_password1').value;
+            let pass2 = document.getElementById('id_password2').value;
+            if(pass1 !== pass2){
+                e.preventDefault();
+                alert("⚠️ Las contraseñas no coinciden.");
+            }
+        });
+    </script>
+{% endblock %}

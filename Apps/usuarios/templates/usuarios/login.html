@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Iniciar sesión{% endblock %}
+
+{% block content %}
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-header bg-gradient bg-dark text-white text-center rounded-top-4">
+                    <h4 class="mb-0"><i class="bi bi-box-arrow-in-right"></i> Bienvenido a la Revista</h4>
+                    <small class="text-light">Inicia sesión para continuar</small>
+                </div>
+                <div class="card-body p-4">
+                    <form method="post" id="loginForm" novalidate>
+                        {% csrf_token %}
+                        <div class="form-floating mb-3">
+                            {{ form.username }}
+                            <label for="id_username">Usuario</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            {{ form.password }}
+                            <label for="id_password">Contraseña</label>
+                        </div>
+                        <button type="submit" class="btn btn-dark w-100 shadow-sm">
+                            <i class="bi bi-door-open"></i> Entrar
+                        </button>
+                    </form>
+                    <hr>
+                    <p class="text-center mb-0">¿No tienes cuenta?
+                        <a href="{% url 'usuarios:registro' %}" class="text-decoration-none fw-bold">Regístrate aquí</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Validación rápida con JS
+        document.getElementById('loginForm').addEventListener('submit', function(e){
+            let inputs = this.querySelectorAll('input');
+            let valido = true;
+            inputs.forEach(inp=>{
+                if(!inp.value.trim()){
+                    inp.classList.add("is-invalid");
+                    valido = false;
+                } else {
+                    inp.classList.remove("is-invalid");
+                }
+            });
+            if(!valido){
+                e.preventDefault();
+                alert("Por favor, completa todos los campos.");
+            }
+        });
+    </script>
+{% endblock %}

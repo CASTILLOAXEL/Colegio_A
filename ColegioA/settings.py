@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'Apps.home',
     'Apps.principal',
     'Apps.informacion',
-    'Apps.publicaciones'
+    'Apps.publicaciones',
+    'Apps.usuarios'
 ]
 
 MIDDLEWARE = [
@@ -124,3 +125,15 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Configuraciones de autenticación
+AUTH_USER_MODEL = "usuarios.Usuario"
+LOGIN_URL = "usuarios:login"
+LOGIN_REDIRECT_URL = "home:index"
+LOGOUT_REDIRECT_URL = "usuarios:login"
+
+LANGUAGE_CODE = 'es'
+TIME_ZONE = 'America/Guatemala'
+USE_I18N = True
+USE_L10N = True
+USE_TZ = True

@@ -1,7 +1,9 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 from Apps.publicaciones.models import EstudiantePublicador, EstudianteAutorizador, Articulo, Comentario
 from Apps.principal.models import Categoria
 
+@login_required(login_url="usuarios:login")
 def index(request):
     context = {
         "total_publicadores": EstudiantePublicador.objects.count(),
